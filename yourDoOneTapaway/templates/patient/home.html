@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{ title }} {% endblock %}
+<style>
+{% block style %}
+
+.main-body{
+    background: url("{% static 'images/Rectangle2.png'%}") ;
+    background-size: cover;
+    height: 700px;
+    width: 100%;
+    margin-top: 20px;
+    
+    
+}
+.fix-connect{
+    background-color: #141280;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    border-radius: 100%;
+    padding: 5px;
+    
+    
+}
+.fix-connect:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.main-text-1{
+    font-family: 'Jacques Francois Shadow', cursive;
+    font-size: 50px;
+    position: relative;
+    left: 30px;
+    top: 200px;
+}
+.main-text-2{
+    font-family: 'Jacques Francois Shadow', cursive;
+    font-size: 50px;
+    position: relative;
+    left: 30px;
+    top: 220px;
+}
+.bookAppo{
+    background: #48D6C5;
+    font-size: 20px;
+    width: 300px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    position: relative;    
+    left: 40px;
+    top: 240px;
+    border-radius: 10px;
+    color: #141280;
+    
+
+}
+.bookAppo:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+{% endblock %}
+</style>
+
+{% block body %}
+    <div class="main-body">
+        <h2 class="main-text-1">Protect yourself, and</h2>
+        <h2 class="main-text-2">the ones you love.</h2>
+        <a href="#"><div class="bookAppo">Book an Appointment</div></a>
+    </div>
+    <a href="#"><div class="fix-connect">Connect With Your Doctor</div></a>
+{% endblock %}
+

@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&display=swap" rel="stylesheet">
+    <title>{% block title %} {% endblock %} </title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        header nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        header nav ul li {
+            margin-left: 5px;
+            margin-right: 5px;
+            font-size: 20px; 
+            
+        }
+
+        header nav ul li:first-child {
+            margin-right: auto;
+        }
+        .original-nav nav ul{
+            list-style: none;
+            display: flex;
+            justify-content: flex-start;
+        }
+        .original-nav nav ul li {
+            margin-left:15px;
+            margin-right: 5px;
+            margin-top: 20px;
+            font-size: 20px; 
+        }
+
+        {% block style %} {% endblock %}
+        .footer{
+            text-align:center;
+            color:darkblue;
+            
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#"><img src="{% static 'images/logo.png'%}" alt="error" width="160px"></a></li>
+                <li  style="float:right"><a href="#" >Sigup</a></li>
+                <li  style="float:right"><a href="#">login</a></li>
+                <li  style="float:right"><form action="#" method="get">
+                    <input type="text">
+                    <button type="submit">🔍</button>
+                </form></li>
+                <li  style="float:right"><a href="#"><img src="{% static 'images/cart.png'%}" alt="error" srcset="" width="30px"></a></li>
+            </ul>
+        </nav>
+    </header>
+    </div>
+    <hr style="margin-top: 0;">
+    <div class="original-nav">
+        <nav>
+            <ul>
+                <li><a href="#">Doctor</a></li>
+                <li><a href="#">Labrortary</a></li>
+                <li><a href="#">Pharmacy</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#" style="margin-left: 900px;">About us</a></li>
+                <li><a href="#">Contact us</a></li>
+
+            </ul>
+        </nav>
+    </div>
+    {% block body%} {% endblock %}
+     <footer>
+        <div class="footer" style="padding-top: 20px;"><h1>Your doctor, one tap away</h1></div>
+        <p class="footer " style="padding-top: 5px;">Copyright © 2023 All Rights Reserved to Your doctor, one tap away</p>
+    </footer>
+</body>
+</html>
