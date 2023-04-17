@@ -13,3 +13,9 @@ def doctor_views(request):
         "title":"Doctor"
     }
     return render(request , "patient/doctor.html",params)
+
+def lab_views(request):
+    params = {
+        "title":"Lab"
+    }
+    return render(request , "patient/lab.html",params)

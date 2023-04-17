@@ -2,3 +2,103 @@
 {% load static %}
 {% block title %} {{ title }} {% endblock %}
 
+<style>
+{% block style %} 
+.Doctor-dash{
+    display: grid;
+    grid-template-columns: auto auto auto;
+
+}
+.Doctor-dash-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.Doctor-dash-text{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    
+    font-family:  Helvetica,Arial, sans-serif ;
+    font-size: 27px;
+}
+.catg{
+    background-color: aqua;
+    width: 80%;
+    height: 80PX;
+    margin-left: auto;
+    margin-right: auto;
+}
+.Dr-suggetion{
+    
+
+}
+.Dr-suggetion-flex{
+
+    border: 1px solid black;
+    border-radius: 30px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 60%;
+    margin: auto;
+
+}
+.Dr-suggetion-flex-img{
+    background: #000;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    border-radius: 100px;
+    
+}
+.Dr-suggetion-flex-desc{
+    margin: 5px;
+
+}
+.Dr-suggetion-flex-price{
+    margin: 5px;
+    margin-top: 20px;
+}
+
+{% endblock %}
+</style>
+
+{% block body %}
+<div class="Doctor-dash">
+    <div class="Doctor-dash-image">
+        <img src="{% static 'images/dash.png' %} " alt="error" srcset="">
+    </div >    
+    <div class="Doctor-dash-text" style="align-self: center">
+        <p>Discover Your Perfect Match: Handpick a Top-notch Doctor from a Reputable Online Healthcare Platform!</p>
+    </div>
+    <div style="min-width: 50px; height: 50px;"></div>
+    
+</div>
+<div class="catg">
+
+</div>
+<h1 style="width: 80%; height: 50px; margin-left: 50px; margin-top: 20px;">Handpick a Top-notch Doctor</h1>
+<div class="Dr-suggetion">
+    <a href="#">
+    <div class="Dr-suggetion-flex">
+        <div class="Dr-suggetion-flex-img" ><img src="" alt=""></div>
+        <div class="Dr-suggetion-flex-desc">
+            <div ><strong> name</strong></div>
+            <div>8 years of Experience</div>
+            <div>MBBS, MS - Surgery, Fellowship in Gastro Intestinal Surgery </div>
+            <div>Kims Hospital & Research Centre , Bengaluru</div>
+        </div>
+        <div class="Dr-suggetion-flex-price">
+            <div>Consultation Fee</div>
+            <div>₹ 399/-</div>
+            <div><form action="#">
+                <button type="submit" style="border-color: blue; padding: 5px; margin-top:5px ;">connect</button>
+            </form></div>
+        </div>
+        
+    </div>
+    </a>
+</div>
+
+{% endblock %}
