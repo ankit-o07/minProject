@@ -1,3 +1,148 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %} {{ title }} {% endblock %}
+<style>
+{% block style %} 
+.lab-heading{
+    width: 70%;
+    margin: auto;
+    margin-top: 80px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.lab-search{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+.lab-search-bar{
+    width: 50%;
+    height: 35px;
+    font-size: 18px;
+}
+.lab-catg{
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 50px;
+   
+    height: 100px;
+
+}
+.lab-catg-parent{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    padding: 20px;
+}
+.lab-catg-child{
+    width: 200px;
+    height: 70px;
+    background-color: #F5F5F5;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+}
+.lab-catg-child:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.main-box{
+    display: grid;
+    gap: 50px 100px;
+    grid-template-columns: 80px 80px;
+}
+.box{
+    height: 200px;
+    width: 200px;
+    margin: 40px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+}
+.box:hover{
+    box-shadow: 10px 10px 5px lightblue;
+}
+
+.box-left{
+    margin-left: 240px;
+
+}
+
+{% endblock %}
+</style>
+
+{% block body%} 
+
+<div>
+<h1 class="lab-heading">Relief is just a pill away.</h1>
+</div>
+<div class="lab-search">
+    <form action="/" method="GET">
+        <input type="text" name="What’s the medicine your need ?" id="" class="lab-search-bar" placeholder="What’s the medicine your need ?">
+        <button type="submit" style="padding:5px;">🔍</button>
+        
+    </form>
+</div>
+<h1 style="margin-top: 30px; margin-left: 30px;">Choose by category</h1>
+<div class="lab-catg">
+
+<div class="lab-catg-parent">
+    <div class="lab-catg-child">
+
+    </div>
+    <div class="lab-catg-child">
+
+    </div>
+    <div class="lab-catg-child">
+
+    </div>
+    <div class="lab-catg-child">
+
+    </div>
+    <div class="lab-catg-child">
+
+    </div>
+    <div class="lab-catg-child">
+
+    </div>
+    <div class="lab-catg-child">
+
+    </div>
+    <div class="lab-catg-child">
+
+    </div>
+
+</div>
+
+</div>
+<div class="main-box" style="background-color: #F0F0F5; margin: 50px; "></div>
+<table>
+    <tr>
+        <th><a href="/"><div class="box box-left">
+            <p >Blood pressure</p>
+            <p class="left-a"></p>
+            <p class="left-a">₹ 50</p>
+        </div></a></th>
+
+        <th><a href="/"><div class="box">
+            <p >Test Name</p>
+            <p class="left-a">Description</p>
+            <p class="left-a">₹ 300</p>
+        </div></a></th>
+
+        <th><a href="/"><div class="box">
+            <p >Test Name</p>
+            <p class="left-a">Description</p>
+            <p class="left-a">₹ 300</p>
+        </div></a></th>
+
+        <th><a href="/"><div class="box box-rigth">
+            <p >Test Name</p>
+            <p class="left-a">Description</p>
+            <p class="left-a">₹ 300</p>
+        </div></a></th>
+    </tr>
+    
+</table>
+</div>
+{% endblock %}
