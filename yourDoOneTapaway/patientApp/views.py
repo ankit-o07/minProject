@@ -19,3 +19,9 @@ def lab_views(request):
         "title":"Lab"
     }
     return render(request , "patient/lab.html",params)
+
+def pharmacy_views(request):
+    params = {
+        "title":"Pharmacy"
+    }
+    return render(request , "patient/pharmacy.html",params)
