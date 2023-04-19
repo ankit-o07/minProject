@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.urls import path,include
-from .views import home_views , doctor_views ,lab_views , pharmacy_views ,blog_views , doctor_detail_view , pharmacy_detail_view
+from .views import pharmacy_dashboard_views
 
 urlpatterns = [
     
-    path('',home_views,name="Home"),
+    path('dashboard/',pharmacy_dashboard_views,name="Dashboard_pharma"),
     
     
 
