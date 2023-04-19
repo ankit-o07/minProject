@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{ title }} {% endblock %}
+<style>
+{% block style %}
+.doc-view{
+
+    width: 80%;
+    display: grid;
+    grid-template-columns: auto auto;
+
+}
+.doc-view-img{
+
+}
+.doc-view-details{
+
+}
+
+{% endblock %}
+</style>
+
+{% block body%} 
+<div class="doc-view">
+    <div class="doc-view-img"></div>
+    <div class="doc-view-details">
+        
+    </div>
+</div>
+{% endblock %}
