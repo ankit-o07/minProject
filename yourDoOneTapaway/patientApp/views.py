@@ -31,3 +31,14 @@ def blog_views(request):
         "title":"Blogs"
     }
     return render(request , "patient/blog.html",params)
+
+def doctor_detail_view(request):
+    params = {
+        "title":"Dr. Vyshak BM"
+    }
+    return render(request , "patient/doctorView.html",params)
+def pharmacy_detail_view(request):
+    params = {
+        "title":"Paracetalmol"
+    }
+    return render(request , "patient/productView.html",params)
