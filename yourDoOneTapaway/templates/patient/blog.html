@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{ title }} {% endblock %}
+<style>
+{% block style %}
+.blog-banner{
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 300px;
+    background: #000;
+}
+.lab-search{
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+.lab-search-bar{
+    width: 50%;
+    height: 35px;
+    font-size: 18px;
+}
+.blog-add{
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+}
+.blog-add-heading{
+    margin-top: 50px; 
+    margin-left: 20px; 
+    margin-bottom:30px ;
+
+}
+.blog-add-context-p{
+    width: 95%;
+    margin: auto;
+    height: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: justify;
+    border-radius: 10px;
+
+}
+.blog-add-context-p:hover{
+    box-shadow: 10px 10px 5px lightblue;
+}
+.blog-add-context{
+    font-size: 20px;
+    padding-top: 15px ;
+    
+    margin: auto;
+    margin-left: 10px;
+    
+
+
+}
+.blog-add-add{
+    color: blue;
+    font-size: 20px;
+    padding-top: 15px ;
+    
+    margin: auto;
+    margin-left: 10px;
+
+}
+.blog-body{
+    width: 90%;
+    margin: auto;
+    
+    
+}
+.blog-container{
+    display: grid;
+    
+    grid-template-columns: auto auto auto;
+    justify-content: space-evenly;
+    
+}
+.blog-container-item{
+    width: 365px;
+    padding: 20px;
+    background-color: #EAEAEA;
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.blog-container-item:hover{
+    box-shadow: 10px 10px 5px lightblue;
+}
+{% endblock %}
+</style>
+
+{% block body%}
+<div class="blog-banner">
+
+</div>
+<div class="lab-search">
+    <form action="/" method="GET">
+        <input type="text" name="What’s the medicine your need ?" id="" class="lab-search-bar" placeholder="What’s the blog your need ?">
+        <button type="submit" style="padding:7px;">🔍</button>
+        
+    </form>
+</div>
+<div class="blog-add">
+    <h1 class="blog-add-heading">Share your knowledge</h1>
+    <a href="/">
+    <div class="blog-add-context-p">
+    <p class="blog-add-context">Create a blog post authored by a medical professional, intended to be read by patients seeking reliable insights.</p>
+    <p class="blog-add-add">click to craft a blog</p>
+    </div>
+    </a>
+</div>
+<div class="blog-body">
+<div>
+    <h1 style="margin-top: 50px; margin-left: 20px; margin-bottom:30px ;">Latest Blog</h1>
+</div>
+
+<div class="blog-container" >
+    <a href="/">
+    <div class="blog-container-item">
+        <h3>Title</h3>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt veniam voluptatum eaque consequatur nihil iusto, nemo ut et mollitia quas laboriosam nobis exercitationem rerum repellat explicabo in error quos odio! <span style=" color: bule;">read more...</span></p>
+    </div>
+    </a>
+    <div class="blog-container-item">
+        <h3>Title</h3>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt veniam voluptatum eaque consequatur nihil iusto, nemo ut et mollitia quas laboriosam nobis exercitationem rerum repellat explicabo in error quos odio!</p>
+    </div>
+    <div class="blog-container-item">
+        <h3>Title</h3>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt veniam voluptatum eaque consequatur nihil iusto, nemo ut et mollitia quas laboriosam nobis exercitationem rerum repellat explicabo in error quos odio!</p>
+    </div>
+    <div class="blog-container-item">
+        <h3>Title</h3>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt veniam voluptatum eaque consequatur nihil iusto, nemo ut et mollitia quas laboriosam nobis exercitationem rerum repellat explicabo in error quos odio!</p>
+    </div>
+    <div class="blog-container-item">
+        <h3>Title</h3>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt veniam voluptatum eaque consequatur nihil iusto, nemo ut et mollitia quas laboriosam nobis exercitationem rerum repellat explicabo in error quos odio!</p>
+    </div>
+    <div class="blog-container-item">
+        <h3>Title</h3>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt veniam voluptatum eaque consequatur nihil iusto, nemo ut et mollitia quas laboriosam nobis exercitationem rerum repellat explicabo in error quos odio!</p>
+    </div>
+</div>
+</div>
+
+
+
+{% endblock %}
