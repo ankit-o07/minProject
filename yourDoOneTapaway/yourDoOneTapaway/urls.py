@@ -6,4 +6,5 @@ urlpatterns = [
     path('',include("patientApp.urls")),
     path('pharmacy/',include("pharmaApp.urls")),
     path('lab/',include("labApp.urls")),
+    path('account/',include("AcoountApp.urls"))
 ]
