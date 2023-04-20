@@ -63,7 +63,7 @@ class PharmacyProfile(models.Model):
     pharmacyId = models.BigAutoField(primary_key=True)
     user = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
     pharmacyName = models.CharField(max_length=100)
-    license = models.FileField()
+    license = models.FileField(upload_to="static")
     pharmacyAddress = models.FileField()
     
     def __str__(self):
@@ -80,5 +80,5 @@ class LabProfile(models.Model):
         return self.labName
     
 
-    
+  
 

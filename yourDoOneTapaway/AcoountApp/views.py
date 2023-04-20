@@ -69,7 +69,7 @@ def regLab(request):
             "warning": "renderdetali"      
         }
         form = AddLab(request.POST)
-        print()
+        print(form.is_valid())
         if form.is_valid():
             userName = request.POST.get("labName" ,"")
             
