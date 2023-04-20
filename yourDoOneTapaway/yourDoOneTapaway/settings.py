@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'DoctorApp',
     "patientApp",
     'pharmaApp',
+    "labApp",
 ]
 
 MIDDLEWARE = [
