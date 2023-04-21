@@ -7,16 +7,18 @@
     <title>{{ title }}</title>
     <style>
         .signup-form{
-            width: 80%;
+            width: 27%;
+            height: 200px;
             margin: auto;
             text-align: center;
+            border: 1px solid black;
         }
 
     </style>
 </head>
 <body>
     <div class="signup-form">
-    <form action="/account/labregistration/" method="post"> {% csrf_token %}
+    <form action="/account/labregistration/" method="post" enctype="multipart/form-data"> {% csrf_token %}
         {{ from.as_p }}
         <button type="submit">submit</button>
     </form>

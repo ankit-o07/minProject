@@ -73,8 +73,9 @@ class LabProfile(models.Model):
     labId = models.BigAutoField(primary_key=True)
     user = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
     labName = models.CharField(max_length=100)
-    license = models.FileField()
-    labAddress = models.FileField()
+    license = models.FileField(upload_to="lab/", default="")
+    # license = models.CharField(max_length=500)
+    labAddress = models.CharField( max_length=500)
 
     def __str__(self):
         return self.labName

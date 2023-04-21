@@ -42,7 +42,7 @@ def regDoctor(request):
             "warning": "renderdetali"
              
         }
-        form = AddDoctor(request.POST)
+        form = AddDoctor(request.POST ,request.FILES)
         if form.is_valid():
             userName = request.POST.get("Fee" ,"")
             password = request.POST.get("Experience" ,"")
@@ -68,7 +68,7 @@ def regLab(request):
             "title": "LabRegistration",
             "warning": "renderdetali"      
         }
-        form = AddLab(request.POST)
+        form = AddLab(request.POST,request.FILES)
         print(form.is_valid())
         if form.is_valid():
             userName = request.POST.get("labName" ,"")
@@ -99,7 +99,7 @@ def regpharmacy(request):
             "warning": "reEnterdetali"
              
         }
-        form = AddPharmacy(request.POST)
+        form = AddPharmacy(request.POST ,request.FILES)
         if form.is_valid():
             userName = request.POST.get("pharmacyName" ,"")
             
