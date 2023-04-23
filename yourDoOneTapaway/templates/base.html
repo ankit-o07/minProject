@@ -63,8 +63,12 @@
         <nav>
             <ul>
                 <li><a href="/" style="margin:0;" ><img src="{% static 'images/logo.png'%}" alt="error" width="160px"></a></li>
-                <li  style="float:right"><a href="#" >Sigup</a></li>
-                <li  style="float:right"><a href="#">login</a></li>
+                <li  style="float:right"><a href="/account/signup" >Sigup</a></li>
+                {% if request.user.is_authenticated %}
+                    <li  style="float:right"><a href="/account/logout">logout</a></li>
+                {% else %}
+                    <li  style="float:right"><a href="/account/login">login</a></li>
+                {% endif %}    
                 <li  style="float:right"><form action="#" method="get">
                     <input type="text">
                     <button type="submit">🔍</button>
@@ -82,7 +86,7 @@
                 <li><a href="/lab">Labrortary</a></li>
                 <li><a href="/pharmacy">Pharmacy</a></li>
                 <li><a href="/blog">Blog</a></li>
-                <li><a href="#" style="margin-left: 900px;">About us</a></li>
+                <li><a href="#" style="margin-left: 800px;">About us</a></li>
                 <li><a href="#">Contact us</a></li>
 
             </ul>

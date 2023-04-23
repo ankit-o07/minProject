@@ -1,12 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render ,redirect
 
 # Create your views here.
 from .form import AddUser , AddDoctor , AddLab ,AddPatient , AddPharmacy
-
+from .models import UserProfile, PatientProfile, DoctorProfile, PharmacyProfile, LabProfile 
+from django.contrib.auth.models import User
+from django.contrib.auth import login,logout,authenticate
+from .decorators import authenticat_doctor ,authenticat_lab ,authenticat_pharmacy
 
 
 def adduser(request):
-
 
     if request.method == "POST":
         userForm = AddUser()
@@ -18,10 +20,20 @@ def adduser(request):
         }
         form = AddUser(request.POST)
         if form.is_valid():
+            firstName = request.POST.get("firstName","")
+            lastName = request.POST.get("lastName","")
+            Dob =  request.POST.get("Dob","")
+            gender = request.POST.get("gender","")
+            email = request.POST.get("email","")
+            phoneNumber = request.POST.get("phoneNumber","")
+            account_type = request.POST.get("account_type","")
             userName = request.POST.get("userName" ,"")
             password = request.POST.get("password" ,"")
-            print("username: ", userName)
-            print("password: ", password)
+            user_profile = UserProfile.objects.create(firstName=firstName,lastName=lastName,Dob=Dob,gender=gender,email=email,phoneNumber=phoneNumber,account_type=account_type,userName=userName)
+            user_profile.save()
+            my_user = User.objects.create_user(userName,email,password)
+            my_user.save()
+            
         else :
             return render(request, "account/sigup.html",data)
 
@@ -32,22 +44,20 @@ def adduser(request):
         }
     return render(request, "account/sigup.html",data)
 
-
+@authenticat_doctor
 def regDoctor(request):
     if request.method == "POST":
         userForm = AddDoctor()
         data = {
             "from" : AddDoctor,
             "title": "DoctorRegistration",
-            "warning": "renderdetali"
+            "warning": "reEnterDetali"
              
         }
         form = AddDoctor(request.POST ,request.FILES)
         if form.is_valid():
-            userName = request.POST.get("Fee" ,"")
-            password = request.POST.get("Experience" ,"")
-            print("username: ", userName)
-            print("password: ", password)
+            qualification = request.POST.get("qualification","")
+            id_proof      =  request.FILES("id_proof","")
             
         else :
             return render(request, "account/sigup.html",data)
@@ -59,7 +69,7 @@ def regDoctor(request):
         }
     return render(request, "account/doctorReg.html",data)
 
-
+@authenticat_lab
 def regLab(request):
     if request.method == "POST":
         userForm = AddLab()
@@ -89,7 +99,7 @@ def regLab(request):
     return render(request, "account/labReg.html",data)
 
 
-
+@authenticat_pharmacy
 def regpharmacy(request):
     if request.method == "POST":
         userForm = AddPharmacy()
@@ -116,3 +126,48 @@ def regpharmacy(request):
              
         }
     return render(request, "account/pharmaReg.html",data)
+
+def login_view(request):
+    if request.method == "POST":
+        
+        userName = request.POST.get("username" ,"")
+        password = request.POST.get("password","")
+        user = authenticate(request ,username=userName ,password=password)
+        
+        if user is not None:
+            login(request,user)
+            username = request.user.username 
+            print(username)
+            
+            user_profile = UserProfile.objects.get(userName=username)  
+            role = user_profile.account_type
+            print(role)
+            if ( role == "D"):
+                print("test1")
+                return redirect("/doctor/dashboard/")
+            elif(role == "P"):
+                print("test2")
+                return redirect("/pharmacy/dashboard/")
+            elif(role == "L"):
+                print("test3")
+                return redirect("/lab/dashboard/")
+            else:
+                print("test4")
+                return redirect('/')
+        else:
+      
+            return redirect('/account/login')
+        
+    data = {
+        "title":"login"
+    }
+    return render(request,'account/login.html',data)
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
+
+
+
+
+            
