@@ -21,8 +21,8 @@ class UserProfile(models.Model):
     account_type = models.CharField(max_length=2,unique=False,choices=account_type_choices)
 
     userName = models.CharField(max_length=50, unique=True)
-    password = models.CharField(max_length=100)
-
+    
+    
 
     def __str__(self):
         return self.userName
@@ -49,7 +49,7 @@ class PatientProfile(models.Model):
     
 class DoctorProfile(models.Model):
     
-    user = models.OneToOneField(UserProfile, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
     qualification= models.CharField(max_length=100,blank=False)
     id_proof = models.FileField()
     degree = models.FileField()
@@ -57,7 +57,7 @@ class DoctorProfile(models.Model):
     Fee = models.IntegerField()
     address = models.CharField(max_length=200)
     def __str__(self):
-        return self.user.firstName
+        return self.user.userName
 
 class PharmacyProfile(models.Model):
     pharmacyId = models.BigAutoField(primary_key=True)

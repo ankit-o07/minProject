@@ -5,7 +5,7 @@ from django import forms
 class AddUser(ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['firstName', 'lastName',  'Dob', 'gender', 'email', 'phoneNumber', 'account_type','userName', 'password']
+        fields = ['firstName', 'lastName',  'Dob', 'gender', 'email', 'phoneNumber', 'account_type','userName']
         widgets = {
             'Dob': forms.TextInput(attrs={'placeholder': 'YYYY-MM-DD'}),
             'password': forms.TextInput(attrs={'type':'password'})

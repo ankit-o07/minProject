@@ -18,7 +18,9 @@
     <div class="signup-form">
     <form action="/account/signup/" method="post"> {% csrf_token %}
         {{ from.as_p }}
-        <button type="submit">submit</button>
+        <label >Password :</label>
+        <input type="password"><br>
+        <button type="submit" name="password">submit</button>
     </form>
     {{ warning }}
     </div>

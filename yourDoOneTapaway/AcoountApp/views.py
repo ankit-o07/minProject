@@ -5,6 +5,7 @@ from .form import AddUser , AddDoctor , AddLab ,AddPatient , AddPharmacy
 from .models import UserProfile, PatientProfile, DoctorProfile, PharmacyProfile, LabProfile 
 from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate
+from django.contrib import messages
 from .decorators import authenticat_doctor ,authenticat_lab ,authenticat_pharmacy
 
 
@@ -19,7 +20,9 @@ def adduser(request):
              
         }
         form = AddUser(request.POST)
+        print("test1")
         if form.is_valid():
+            print("test2")
             firstName = request.POST.get("firstName","")
             lastName = request.POST.get("lastName","")
             Dob =  request.POST.get("Dob","")
@@ -29,14 +32,17 @@ def adduser(request):
             account_type = request.POST.get("account_type","")
             userName = request.POST.get("userName" ,"")
             password = request.POST.get("password" ,"")
+            print("test3")
             user_profile = UserProfile.objects.create(firstName=firstName,lastName=lastName,Dob=Dob,gender=gender,email=email,phoneNumber=phoneNumber,account_type=account_type,userName=userName)
             user_profile.save()
+            print("test4")
             my_user = User.objects.create_user(userName,email,password)
             my_user.save()
             
         else :
+            print("test5")
             return render(request, "account/sigup.html",data)
-
+    print("test6")
     data = {
             "from" : AddUser,
             "title": "signup"
@@ -56,8 +62,23 @@ def regDoctor(request):
         }
         form = AddDoctor(request.POST ,request.FILES)
         if form.is_valid():
-            qualification = request.POST.get("qualification","")
-            id_proof      =  request.FILES("id_proof","")
+            qualification = form.cleaned_data['qualification']
+            id_proof = form.cleaned_data['id_proof']
+            degree = form.cleaned_data['degree']
+            experience = form.cleaned_data['Experience']
+            fee = form.cleaned_data['Fee']
+            address = form.cleaned_data['address']
+            user = request.user.username 
+            
+            user_profile = UserProfile.objects.get(userName=request.user.username)
+            doctor_profile = DoctorProfile(user=user_profile,qualification=qualification, id_proof=id_proof, degree=degree, Experience=experience, Fee=fee, address=address)
+
+            print(doctor_profile.address)
+            print(doctor_profile.Experience)
+            print(doctor_profile.fee)
+            # doctor_profile.save()
+            
+
             
         else :
             return render(request, "account/sigup.html",data)
@@ -128,25 +149,34 @@ def regpharmacy(request):
     return render(request, "account/pharmaReg.html",data)
 
 def login_view(request):
+    
     if request.method == "POST":
         
-        userName = request.POST.get("username" ,"")
+        userName = request.POST.get("username","")
         password = request.POST.get("password","")
-        user = authenticate(request ,username=userName ,password=password)
         
-        if user is not None:
+        print("Username:",userName)
+        print("password:",password)
+        user = None
+        try:
+            user = authenticate(request ,username=userName ,password=password)
+        except Exception as e:
+            print(e)
+        print(user)
+        if user is  not None:
+            print("Test entry")
             login(request,user)
             username = request.user.username 
-            print(username)
+            
             
             user_profile = UserProfile.objects.get(userName=username)  
             role = user_profile.account_type
-            print(role)
+            
             if ( role == "D"):
-                print("test1")
+                
                 return redirect("/doctor/dashboard/")
             elif(role == "P"):
-                print("test2")
+                
                 return redirect("/pharmacy/dashboard/")
             elif(role == "L"):
                 print("test3")
@@ -155,7 +185,7 @@ def login_view(request):
                 print("test4")
                 return redirect('/')
         else:
-      
+            print("exit test")
             return redirect('/account/login')
         
     data = {

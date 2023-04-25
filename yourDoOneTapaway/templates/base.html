@@ -53,6 +53,7 @@
             text-align:center;
             color:darkblue;
             
+            
         }
 
     </style>
@@ -62,18 +63,16 @@
     <header>
         <nav>
             <ul>
-                <li><a href="/" style="margin:0;" ><img src="{% static 'images/logo.png'%}" alt="error" width="160px"></a></li>
-                <li  style="float:right"><a href="/account/signup" >Sigup</a></li>
+                <li><a href="/" style="margin:0;" ><img src="{% static 'images/logo.png'%}" alt="error" width="200px"></a></li>
+                <li  style="margin-top: 10px;"><a href="/account/signup" >Signup</a></li>
                 {% if request.user.is_authenticated %}
-                    <li  style="float:right"><a href="/account/logout">logout</a></li>
+                    <li  style="margin-top: 10px;"><a href="/account/logout">logout</a></li>
                 {% else %}
-                    <li  style="float:right"><a href="/account/login">login</a></li>
+                    <li  style="margin-top: 10px;"><a href="/account/login">login</a></li>
                 {% endif %}    
-                <li  style="float:right"><form action="#" method="get">
-                    <input type="text">
-                    <button type="submit">🔍</button>
-                </form></li>
-                <li  style="float:right"><a href="#"><img src="{% static 'images/cart.png'%}" alt="error" srcset="" width="30px"></a></li>
+                
+                <li  style="margin-top: 5px;"><a href="#"><img src="{% static 'images/cart.png'%}" alt="error" srcset="" width="30px"></a></li>
+                <li  style=""><a href="#"><div style="height: 50px; width: 50px; border-radius: 100px; background: gray;"></div></a></li>
             </ul>
         </nav>
     </header>
