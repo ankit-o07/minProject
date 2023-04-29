@@ -8,7 +8,7 @@ class AddUser(ModelForm):
         fields = ['firstName', 'lastName',  'Dob', 'gender', 'email', 'phoneNumber', 'account_type','userName']
         widgets = {
             'Dob': forms.TextInput(attrs={'placeholder': 'YYYY-MM-DD'}),
-            'password': forms.TextInput(attrs={'type':'password'})
+            
         }
 
 

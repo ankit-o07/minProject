@@ -10,43 +10,47 @@ from .decorators import authenticat_doctor ,authenticat_lab ,authenticat_pharmac
 
 
 def adduser(request):
-
+    
     if request.method == "POST":
+
         userForm = AddUser()
         data = {
-            "from" : AddUser,
+            "form" : AddUser,
             "title": "signup",
-            "warning": "renderdetali"
+            "warning": "ReEnter Details"
              
         }
         form = AddUser(request.POST)
-        print("test1")
+        print(form.is_valid())
+
         if form.is_valid():
-            print("test2")
-            firstName = request.POST.get("firstName","")
-            lastName = request.POST.get("lastName","")
-            Dob =  request.POST.get("Dob","")
-            gender = request.POST.get("gender","")
-            email = request.POST.get("email","")
-            phoneNumber = request.POST.get("phoneNumber","")
-            account_type = request.POST.get("account_type","")
-            userName = request.POST.get("userName" ,"")
-            password = request.POST.get("password" ,"")
-            print("test3")
-            user_profile = UserProfile.objects.create(firstName=firstName,lastName=lastName,Dob=Dob,gender=gender,email=email,phoneNumber=phoneNumber,account_type=account_type,userName=userName)
+
+            firstName = form.cleaned_data["firstName"]
+            lastName = form.cleaned_data["lastName"]
+            Dob = form.cleaned_data["Dob"]
+            gender = form.cleaned_data["gender"]
+            email = form.cleaned_data["email"]
+            phoneNumber = form.cleaned_data["phoneNumber"]
+            account_type = form.cleaned_data["account_type"]
+            userName = form.cleaned_data["userName"]
+            
+            password = request.POST.get("password","")
+            user_profile = UserProfile.objects.create(firstName=firstName, lastName=lastName, Dob=Dob, gender=gender, email=email, phoneNumber=phoneNumber, account_type=account_type, userName=userName)
+            
+            
             user_profile.save()
-            print("test4")
+
             my_user = User.objects.create_user(userName,email,password)
             my_user.save()
+            return redirect('/')
             
         else :
-            print("test5")
+            print(form.errors)
             return render(request, "account/sigup.html",data)
-    print("test6")
+
     data = {
-            "from" : AddUser,
-            "title": "signup"
-             
+            "form" : AddUser,
+            "title": "signup"            
         }
     return render(request, "account/sigup.html",data)
 
@@ -75,8 +79,15 @@ def regDoctor(request):
 
             print(doctor_profile.address)
             print(doctor_profile.Experience)
-            print(doctor_profile.fee)
-            # doctor_profile.save()
+            print(doctor_profile.Fee)
+            print(doctor_profile.user.firstName)
+            print(doctor_profile.user.email)
+            doctor_profile.save()
+            data= {
+                "name":doctor_profile.user.firstName,
+                "fee":doctor_profile.Fee
+            }
+            return redirect('/doctor/doctorDashboard/')
             
 
             
@@ -97,19 +108,23 @@ def regLab(request):
         data = {
             "from" : AddLab,
             "title": "LabRegistration",
-            "warning": "renderdetali"      
+            "warning": "<h1>Re Enter detail</h1>"  
         }
         form = AddLab(request.POST,request.FILES)
         print(form.is_valid())
         if form.is_valid():
-            userName = request.POST.get("labName" ,"")
-            
-            print("username: ", userName)
-            
-            
+            labName = request.POST.get("labName" ,"")
+            license = form.cleaned_data["license"]
+            labAddress = form.cleaned_data["labAddress"]
+
+            user_profile = UserProfile.objects.get(userName=request.user.username)
+            lab_profile = LabProfile(user= user_profile,license=license, labName=labName , labAddress= labAddress)    
+            lab_profile.save()        
+            print(form.errors)
+            return redirect('/lab/dashboard')
         else :
             print("I am lab else")
-
+            data['form'] = form
             return render(request, "account/sigup.html",data)
 
     data = {
@@ -132,9 +147,13 @@ def regpharmacy(request):
         }
         form = AddPharmacy(request.POST ,request.FILES)
         if form.is_valid():
-            userName = request.POST.get("pharmacyName" ,"")
-            
-            print("username: ", userName)
+            pharmacyName = request.POST.get("pharmacyName" ,"")
+            license = form.cleaned_data["license"]
+            pharmacyAddress = form.cleaned_data["pharmacyAddress"]
+            user_profile = UserProfile.objects.get(userName=request.user.username)
+            pharmacy_profile = PharmacyProfile(user= user_profile,pharmacyName=pharmacyName,license=license,pharmacyAddress=pharmacyAddress)
+            pharmacy_profile.save()
+            return redirect('/pharma/pharmadashboard')
             
             
         else :
@@ -148,6 +167,40 @@ def regpharmacy(request):
         }
     return render(request, "account/pharmaReg.html",data)
 
+
+def  Regpatient(request):
+    if request.method == "POST":
+        userForm = AddPatient() 
+        data = {
+            "form" :AddPatient,
+            "title": "Patient Registration",
+            "warning": "ReEnterdetali"
+
+        }
+        form = AddPatient(request.POST)
+        if form.is_valid():
+            bloodPressure = form.cleaned_data["bloodPressure"]
+            diabetes = form.cleaned_data["diabetes"]
+            address = form.cleaned_data["address"]
+
+            user_profile = UserProfile.objects.get(userName=request.user.username)
+            patient_profile = PatientProfile(user= user_profile,bloodPressure=bloodPressure,diabetes=diabetes,address=address)
+            patient_profile.save()
+            return redirect("/")
+        else :
+            return render(request,)
+    userForm = AddPatient() 
+    data = {
+        "form" :AddPatient,
+        "title": "Patient Registration",
+        "warning": "ReEnterdetali"
+
+    }
+    return render(request,"account/patientReg.html",data)
+
+            
+
+
 def login_view(request):
     
     if request.method == "POST":
@@ -157,21 +210,20 @@ def login_view(request):
         
         print("Username:",userName)
         print("password:",password)
-        user = None
-        try:
-            user = authenticate(request ,username=userName ,password=password)
-        except Exception as e:
-            print(e)
+        
+        user = authenticate(request,username=userName, password=password)
+        
         print(user)
         if user is  not None:
             print("Test entry")
             login(request,user)
             username = request.user.username 
+            print("username: ", username)
             
             
             user_profile = UserProfile.objects.get(userName=username)  
             role = user_profile.account_type
-            
+            print(role)
             if ( role == "D"):
                 
                 return redirect("/doctor/dashboard/")

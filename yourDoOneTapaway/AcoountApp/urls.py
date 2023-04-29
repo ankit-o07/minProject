@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path,include
-from .views import adduser , regDoctor , regLab , regpharmacy ,login_view ,logout_view
+from .views import adduser , regDoctor , regLab , regpharmacy ,login_view ,logout_view ,Regpatient
 
 urlpatterns = [
     path('signup/',adduser,name="Adduser"),
@@ -9,4 +9,6 @@ urlpatterns = [
     path('doctorregistration/', regDoctor, name="AddDoctor"),
     path('labregistration/', regLab, name="AddDoctor"),
     path('pharmacyregistration/', regpharmacy, name="AddDoctor"),
+    path("patientregistration/",Regpatient,name="AddPatient"),
+
 ]

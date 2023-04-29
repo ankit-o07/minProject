@@ -72,7 +72,7 @@ class PharmacyProfile(models.Model):
 class LabProfile(models.Model):
     labId = models.BigAutoField(primary_key=True)
     user = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
-    labName = models.CharField(max_length=100)
+    labName = models.CharField(max_length=100 ,unique=False)
     license = models.FileField(upload_to="lab/", default="")
     # license = models.CharField(max_length=500)
     labAddress = models.CharField( max_length=500)

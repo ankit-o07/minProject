@@ -18,11 +18,11 @@
 </head>
 <body>
     <div class="signup-form">
-    <form action="/account/labregistration/" method="post" enctype="multipart/form-data"> {% csrf_token %}
+    <form action="." method="post" enctype="multipart/form-data"> {% csrf_token %}
         {{ from.as_p }}
         <button type="submit">submit</button>
     </form>
-    {{ warning }}
+    {{ warning }}   
     </div>
 </body>
 </html>

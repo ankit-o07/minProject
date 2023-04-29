@@ -21,6 +21,24 @@
         <button type="submit">submit</button>
     </form>
     {{ warning }}
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+    {% for field, errors in form.errors.items %}
+        <strong>{{ field }}:</strong>
+        {% for error in errors %}
+            {{ error }}
+        {% endfor %}
+    {% endfor %}
+</div>
+{% endif %}
+
+
+
+
+
+
+
+
     </div>
 </body>
 </html>

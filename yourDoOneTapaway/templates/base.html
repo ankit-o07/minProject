@@ -72,7 +72,7 @@
                 {% endif %}    
                 
                 <li  style="margin-top: 5px;"><a href="#"><img src="{% static 'images/cart.png'%}" alt="error" srcset="" width="30px"></a></li>
-                <li  style=""><a href="#"><div style="height: 50px; width: 50px; border-radius: 100px; background: gray;"></div></a></li>
+                <li  style="text-align: center;"><a href="#"><div style="height: 50px; width: 50px; border-radius: 100px; background: gray;">{{ request.user.username }}</div></a></li>
             </ul>
         </nav>
     </header>
